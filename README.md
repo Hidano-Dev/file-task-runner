@@ -15,9 +15,9 @@ Windows のエクスプローラー「送る」、macOS の Finder クイック�
 ## インストール
 
 ```sh
-pipx install git+https://github.com/<owner>/file-task-runner
+pipx install git+https://github.com/Hidano-Dev/file-task-runner
 # または
-uv tool install git+https://github.com/<owner>/file-task-runner
+uv tool install git+https://github.com/Hidano-Dev/file-task-runner
 
 runner install    # 「送る」/ クイックアクションを作成
 ```
