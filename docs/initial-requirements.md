@@ -106,7 +106,7 @@ os = ["windows"]
 | `convert2mp3_split.bat` | L/R チャンネルを別 mp3 に分割 | テンプレート（`output` を 2 つ宣言） |
 | `convert2png.bat` | `ffmpeg -i %1 %~n1.png` | テンプレート |
 | `convert2wav.bat` | 22050Hz / mono / pcm_s16le | テンプレート |
-| `7zip_sha256.bat` | `7z h -scrcsha256` の結果を `.sha256` に保存 | テンプレート（`stdout` で保存） |
+| `7zip_sha256.bat` | `7z h -scrcsha256` の結果を `.sha256` に保存 | Python スクリプト（タスク名 `sha256`。7z に依存せず hashlib で計算し、sha256sum 形式で保存） |
 | `claude_transrate_jp.bat` | claude CLI でファイルを日本語訳し `_jp` 付きで保存 | テンプレート（タスク名を `claude_translate_jp` に修正） |
 | `image_resize_1024.bat` | 画像を 1024 にリサイズして `output/` に保存 | テンプレート |
 | `check_image_size.bat` | 画像サイズを拡張子別ハッシュカラーで表示 | Python スクリプト |

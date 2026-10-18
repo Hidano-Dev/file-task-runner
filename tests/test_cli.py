@@ -112,6 +112,15 @@ def test_list(home, capsys):
     assert "convert2mp4" in capsys.readouterr().out
 
 
+def test_builtin_sha256(home, tmp_path):
+    import hashlib
+
+    src = write(tmp_path / "日本語.bin", "data")
+    assert run("sha256", str(src)) == 0
+    expected = f"{hashlib.sha256(b'data').hexdigest()} *日本語.bin\n"
+    assert (tmp_path / "日本語.sha256").read_text(encoding="utf-8") == expected
+
+
 def test_script_task_runs_builtin_docx2md(home, tmp_path):
     import zipfile
 
