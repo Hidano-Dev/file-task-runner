@@ -1,0 +1,72 @@
+# Built-in tasks ported from the old sequential_execution .bat files.
+# To change one, define a task with the same name in the user tasks folder (`runner open-config`).
+#
+# ffmpeg always gets -y: the runner has already asked about existing outputs before running.
+
+[convert2mp4]
+cmd = ["ffmpeg", "-hide_banner", "-y", "-i", "{path}", "{output}"]
+output = "{dir}/{stem}.mp4"
+ext = [".mov", ".avi", ".mkv", ".wmv", ".flv", ".webm", ".m4v", ".mpg", ".mpeg", ".mts", ".m2ts", ".ts", ".gif"]
+
+[convert2mp3]
+cmd = ["ffmpeg", "-hide_banner", "-y", "-i", "{path}", "{output}"]
+output = "{dir}/{stem}.mp3"
+ext = [".wav", ".flac", ".aac", ".m4a", ".ogg", ".opus", ".wma", ".aiff", ".aif",
+       ".mp4", ".mov", ".avi", ".mkv", ".webm", ".m4v"]
+
+[convert2mp3_split]
+cmd = ["ffmpeg", "-hide_banner", "-y", "-i", "{path}",
+       "-af", "pan=mono|c0=c0", "{output[0]}",
+       "-af", "pan=mono|c0=c1", "{output[1]}"]
+output = ["{dir}/{stem}_left.mp3", "{dir}/{stem}_right.mp3"]
+ext = [".wav", ".flac", ".aac", ".m4a", ".ogg", ".opus", ".wma", ".aiff", ".aif", ".mp3",
+       ".mp4", ".mov", ".avi", ".mkv", ".webm", ".m4v"]
+
+[convert2png]
+cmd = ["ffmpeg", "-hide_banner", "-y", "-i", "{path}", "{output}"]
+output = "{dir}/{stem}.png"
+ext = [".jpg", ".jpeg", ".bmp", ".tga", ".tif", ".tiff", ".webp", ".gif", ".dds", ".exr", ".hdr"]
+
+[convert2wav]
+cmd = ["ffmpeg", "-hide_banner", "-y", "-i", "{path}", "-ar", "22050", "-ac", "1", "-c:a", "pcm_s16le", "{output}"]
+output = "{dir}/{stem}.wav"
+ext = [".mp3", ".flac", ".aac", ".m4a", ".ogg", ".opus", ".wma", ".aiff", ".aif",
+       ".mp4", ".mov", ".avi", ".mkv", ".webm", ".m4v"]
+
+[7zip_sha256]
+cmd = ["7z", "h", "-scrcsha256", "{path}"]
+stdout = "{dir}/{stem}.sha256"
+
+[claude_translate_jp]
+cmd = ["claude", "-p", "{path} のファイルを日本語に訳して、{output} に保存してください。"]
+output = "{dir}/{stem}_jp{ext}"
+ext = [".md", ".txt", ".rst", ".html", ".htm"]
+
+[image_resize_1024]
+cmd = ["ffmpeg", "-hide_banner", "-y", "-i", "{path}", "-vf", "scale=1024:1024", "{output}"]
+output = "{dir}/output/{name}"
+ext = [".png", ".jpg", ".jpeg", ".bmp", ".tga", ".tif", ".tiff", ".webp"]
+
+[check_image_size]
+script = "check_image_size.py"
+ext = [".png", ".tga", ".jpg", ".jpeg", ".bmp", ".psd", ".exr", ".tif", ".tiff", ".hdr", ".dds", ".webp"]
+
+[ffprobe_simple]
+script = "ffprobe_simple.py"
+ext = [".mp4", ".mov", ".avi", ".mkv", ".wmv", ".flv", ".webm", ".m4v", ".mpg", ".mpeg", ".mts", ".m2ts", ".ts", ".gif"]
+
+[docx2md]
+script = "docx2text.py"
+output = "{dir}/{stem}.md"
+ext = [".docx"]
+
+[docx2txt]
+script = "docx2text.py"
+output = "{dir}/{stem}.txt"
+ext = [".docx"]
+
+[motionbuilder_auto_reduction]
+script = "motionbuilder_auto_reduction.py"
+output = "{dir}/{stem}_30fps{ext}"
+ext = [".fbx"]
+os = ["windows"]
