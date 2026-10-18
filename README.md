@@ -10,7 +10,7 @@ Windows のエクスプローラー「送る」、macOS の Finder クイック�
 
 - Python 3.11 以上
 - [pipx](https://pipx.pypa.io/) または [uv](https://docs.astral.sh/uv/)
-- 各タスクが利用する外部ツール（ffmpeg / ffprobe, 7-Zip, claude CLI など）が PATH 上にあること
+- 各タスクが利用する外部ツール（ffmpeg / ffprobe, claude CLI など）が PATH 上にあること
 
 ## インストール
 
@@ -82,7 +82,7 @@ pause = "on_error"
 |---|---|
 | `convert2mp4` / `convert2mp3` / `convert2png` / `convert2wav` | ffmpeg で変換（wav は 22050Hz / mono / pcm_s16le） |
 | `convert2mp3_split` | L/R チャンネルを `_left.mp3` / `_right.mp3` に分割 |
-| `7zip_sha256` | `7z h -scrcsha256` の結果を `.sha256` に保存 |
+| `sha256` | SHA-256 を sha256sum 形式（`<hash> *<name>`）で `.sha256` に保存 |
 | `claude_translate_jp` | claude CLI で日本語訳し `_jp` 付きで保存 |
 | `image_resize_1024` | 1024x1024 にリサイズして `output/` に保存 |
 | `check_image_size` | 画像サイズを拡張子別の色で表示（2048 超は赤） |
