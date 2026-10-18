@@ -33,9 +33,9 @@ output = "{dir}/{stem}.wav"
 ext = [".mp3", ".flac", ".aac", ".m4a", ".ogg", ".opus", ".wma", ".aiff", ".aif",
        ".mp4", ".mov", ".avi", ".mkv", ".webm", ".m4v"]
 
-[7zip_sha256]
-cmd = ["7z", "h", "-scrcsha256", "{path}"]
-stdout = "{dir}/{stem}.sha256"
+[sha256]
+script = "sha256.py"
+output = "{dir}/{stem}.sha256"
 
 [claude_translate_jp]
 cmd = ["claude", "-p", "{path} のファイルを日本語に訳して、{output} に保存してください。"]
